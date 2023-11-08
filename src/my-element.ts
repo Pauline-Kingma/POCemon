@@ -1,13 +1,12 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { deletePokemon } from './pokemon.actions.js';
 import { Pokemon } from './pokemon.models';
 import { pokemonService } from './pokemon.service.js';
 import { store } from './store';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @state() pokemon: Pokemon[] = store.getState().pokemon;
+  @state() pokemon: Pokemon[] = [];
 
   @state() loading = false;
 
@@ -19,7 +18,7 @@ export class MyElement extends LitElement {
       <div class="card">
         <div class="title">
           <div class="name">${pok.name}</div>
-          <button @click=${() => this.#onDeletePokemon(pok)}>X</button>
+          <button @click=${() => this.onDeletePokemon(pok)}>X</button>
         </div>
         <div class="type">Type: ${pok.type}</div>
         <div class="size">Lengte: ${pok.size.height}</div>
@@ -45,7 +44,7 @@ export class MyElement extends LitElement {
 
   override async connectedCallback(): Promise<void> {
     super.connectedCallback();
-    
+
     // Call service = dispatch action in NgRx
     await pokemonService.loadPokemon();
 
@@ -53,8 +52,11 @@ export class MyElement extends LitElement {
     this.pokemon = store.getState().pokemon;
   }
 
-  #onDeletePokemon(pokemon: Pokemon): void {
-    store.dispatch(deletePokemon(pokemon));
+  async onDeletePokemon(pokemon: Pokemon): Promise<void> {
+    // Call service = dispatch action in NgRx
+    await pokemonService.deletePokemon(pokemon);
+
+    // Get new state = selector in NgRx
     this.pokemon = store.getState().pokemon;
   }
 
