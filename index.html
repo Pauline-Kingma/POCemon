@@ -1,15 +1,20 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>POCémon</title>
-    <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/my-element.ts"></script>
-  </head>
-  <body>
-    <my-element>
-    </my-element>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POCémon</title>
+  <link rel="stylesheet" href="./src/index.css" />
+  <script type="module" src="/src/pokemon-cards.ts"></script>
+  <script type="module" src="/src/pokemon-count.ts"></script>
+</head>
+
+<body>
+  <div class="title">POCémon</div>
+  <pokemon-count></pokemon-count>
+  <pokemon-cards> </pokemon-cards>
+</body>
+
 </html>

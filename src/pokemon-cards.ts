@@ -1,18 +1,19 @@
-import { LitElement, css, html } from 'lit';
+import { LitElement, css, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { Pokemon } from './pokemon.models';
 import { pokemonService } from './pokemon.service.js';
 import { store } from './store';
+import { setLoading } from './pokemon.actions.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('pokemon-cards')
+export class PokemonCards extends LitElement {
   @state() pokemon: Pokemon[] = [];
 
   @state() loading = false;
 
   render() {
     return html`
-    <div class="title">POCémon</div>
+    ${this.loading ? html`<div class="spinner"></div>` : nothing}
     <div class=cards>${this.pokemon.map(pok =>
       html`
       <div class="card">
@@ -43,13 +44,16 @@ export class MyElement extends LitElement {
   }
 
   override async connectedCallback(): Promise<void> {
-    super.connectedCallback();
+    super.connectedCallback();  
 
     // Call service = dispatch action in NgRx
+    store.dispatch(setLoading()); 
+    this.loading = store.getState().loading;
     await pokemonService.loadPokemon();
 
     // Get new state = selector in NgRx
     this.pokemon = store.getState().pokemon;
+    this.loading = store.getState().loading;
   }
 
   async onDeletePokemon(pokemon: Pokemon): Promise<void> {

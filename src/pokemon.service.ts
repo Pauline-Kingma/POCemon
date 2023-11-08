@@ -10,6 +10,7 @@ export class PokemonService {
     const response = await fetch(url);
     // Effect: no error
     if (response.ok) {
+      await delay(1000);
       console.log(await response.json());
       // getPokemonSuccess
       store.dispatch(savePokemon(pokemonMock));
@@ -34,5 +35,7 @@ export class PokemonService {
      }
   }
 }
+
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export const pokemonService = new PokemonService();

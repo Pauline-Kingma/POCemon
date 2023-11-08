@@ -1,7 +1,13 @@
 import { Pokemon } from './pokemon.models';
 
 // Actions
-export const savePokemon = (pokemon: Pokemon) => {
+export const setLoading = () => {
+  return {
+    type: 'pokemon/loading'
+  }
+};
+
+export const savePokemon = (pokemon: Pokemon[]) => {
   return {
     type: 'pokemon/savePokemon',
     payload: pokemon

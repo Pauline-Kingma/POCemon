@@ -2,16 +2,23 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Pokemon } from './pokemon.models';
 
 const initialState = {
-  pokemon: []
+  pokemon: [],
+  loading: false
 };
 
 // Reducer
 function pokemonReducer(state = initialState, action: { type: string; payload: any; }) {
   switch (action.type) {
+    case 'pokemon/loading':
+      return {
+        ...state,
+        loading: true
+      }
     case 'pokemon/savePokemon':
       return {
         ...state,
-        pokemon: action.payload
+        pokemon: action.payload,
+        loading: false
       };
     case 'pokemon/deletePokemon':
       return {
