@@ -1,9 +1,20 @@
-import { pokemonMock } from './pokemon.mock';
-import { Pokemon } from './pokemon.models';
+import { pokemonMock } from "./pokemon.mock";
+import { savePokemon, store } from "./store";
 
 export class PokemonService {
-    async loadPokemon(): Promise<Pokemon[]> {
-        return pokemonMock;
+    async loadPokemon(): Promise<void> {
+        // Angular Service
+        const url = 'https://pokeapi.co/api/v2/pokemon?limit=12';
+        const response = await fetch(url);
+        // Effect: no error
+        if (response.ok) {
+            console.log(await response.json());
+            // getPokemonSuccess
+            store.dispatch(savePokemon(pokemonMock));
+        } else {
+            // Effect: catchError()
+            // getPokemonFail()
+        }
     }
 }
 

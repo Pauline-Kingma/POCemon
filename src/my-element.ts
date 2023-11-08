@@ -1,8 +1,8 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { Pokemon } from './pokemon.models';
-import { deletePokemon, savePokemon, store } from './store';
-import { pokemonMock } from './pokemon.mock';
+import { pokemonService } from './pokemon.service.js';
+import { deletePokemon, store } from './store';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -44,7 +44,11 @@ export class MyElement extends LitElement {
 
   override async connectedCallback(): Promise<void> {
     super.connectedCallback();
-    store.dispatch(savePokemon(pokemonMock));
+    
+    // Call service = dispatch action in NgRx
+    await pokemonService.loadPokemon();
+
+    // Get new state = selector in NgRx
     this.pokemon = store.getState().pokemon;
   }
 

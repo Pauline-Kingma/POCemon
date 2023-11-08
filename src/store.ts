@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { Pokemon } from './pokemon.models';
 
+// Actions
 export const savePokemon = (pokemon: Pokemon[]) => {
     return {
         type: 'pokemon/savePokemon',
@@ -19,6 +20,7 @@ const initialState = {
     pokemon: []
 };
 
+// Reducer
 function pokemonReducer(state = initialState, action: { type: string; payload: any; }) {
     if (action.type === 'pokemon/savePokemon') {
         return {
