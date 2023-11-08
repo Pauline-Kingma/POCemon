@@ -1,5 +1,6 @@
-import { pokemonMock } from "./pokemon.mock";
-import { savePokemon, store } from "./store";
+import { savePokemon } from './pokemon.actions';
+import { pokemonMock } from './pokemon.mock';
+import { store } from './store';
 
 export class PokemonService {
     async loadPokemon(): Promise<void> {

@@ -1,8 +1,9 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
+import { deletePokemon } from './pokemon.actions.js';
 import { Pokemon } from './pokemon.models';
 import { pokemonService } from './pokemon.service.js';
-import { deletePokemon, store } from './store';
+import { store } from './store';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
