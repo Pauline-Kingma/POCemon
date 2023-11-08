@@ -1,32 +1,37 @@
-import { configureStore } from '@reduxjs/toolkit';
 import { Pokemon } from './pokemon.models';
+import { createSlice, configureStore, createAsyncThunk } from '@reduxjs/toolkit';
 
-const initialState = {
-  pokemon: [],
-  loading: false
-};
+export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async () => {
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
+  return pokemonMock;
+});
 
-// Reducer
-function pokemonReducer(state = initialState, action: { type: string; payload: any; }) {
-  switch (action.type) {
-    case 'pokemon/loading':
-      return {
-        ...state,
-        loading: true
-      }
-    case 'pokemon/savePokemon':
-      return {
-        ...state,
-        pokemon: action.payload,
-        loading: false
-      };
-    case 'pokemon/deletePokemon':
-      return {
-        ...state,
-        pokemon: (state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== action.payload.name)
-      }
-    default: return state;
+export const deletePokemon = createAsyncThunk('pokemon/deletePokemon', async () => {
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
+  return respone;
+});
+
+const pokemonSlice = createSlice({
+  name: 'pokemon',
+  initialState: {
+    pokemon: [],
+    loading: false
+  },
+  reducers: {},
+  extraReducers (builder) {
+    builder.addCase(loadPokemon.fulfilled, (state, action) => {
+      state.pokemon = action.payload;
+      state.loading = false;
+    }),
+    builder.addCase(loadPokemon.pending, (state) => {
+      state.loading = true;
+    }),
+    builder.addCase(deletePokemon.fulfilled, (state, action) => {
+      state.pokemon = (state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== action.meta.arg.name)
+    })
   }
-}
+});
 
-export const store = configureStore({ reducer: pokemonReducer });
+export const store = configureStore({
+  reducer: pokemonSlice.reducer
+});

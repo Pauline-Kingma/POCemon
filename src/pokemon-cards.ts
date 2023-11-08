@@ -4,6 +4,7 @@ import { Pokemon } from './pokemon.models';
 import { pokemonService } from './pokemon.service';
 import { store } from './store';
 import { setLoading } from './pokemon.actions';
+import { loadPokemon, deletePokemon } from './pokemon.service';
 
 @customElement('pokemon-cards')
 export class PokemonCards extends LitElement {
@@ -52,15 +53,13 @@ export class PokemonCards extends LitElement {
       this.loading = store.getState().loading;
     });
 
-    // dispatch action
-    store.dispatch(setLoading()); 
-    // Call service = dispatch action in NgRx
-    await pokemonService.loadPokemon();   
+    // Dispatch action
+    store.dispatch(loadPokemon());   
   }
 
   async onDeletePokemon(pokemon: Pokemon): Promise<void> {
-    // Call service = dispatch action in NgRx
-    await pokemonService.deletePokemon(pokemon);    
+   // Dispatch action
+    store.dispatch(deletePokemon(pokemon));  
   }
 
   static styles = css`
