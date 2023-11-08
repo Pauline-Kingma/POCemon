@@ -1,9 +1,9 @@
 import { LitElement, css, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { Pokemon } from './pokemon.models';
-import { pokemonService } from './pokemon.service.js';
+import { pokemonService } from './pokemon.service';
 import { store } from './store';
-import { setLoading } from './pokemon.actions.js';
+import { setLoading } from './pokemon.actions';
 
 @customElement('pokemon-count')
 export class PokemonCount extends LitElement {
@@ -18,12 +18,18 @@ export class PokemonCount extends LitElement {
   override async connectedCallback(): Promise<void> {
     super.connectedCallback();
     
-    this.pokemon = store.getState().pokemon;
+    store.subscribe(() => {
+      this.pokemon = store.getState().pokemon;
+    });
   }
   
   static styles = css`
     :host {     
       text-align: center;
+      height: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   `
 }

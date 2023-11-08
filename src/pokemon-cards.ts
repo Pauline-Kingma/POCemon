@@ -1,9 +1,9 @@
 import { LitElement, css, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { Pokemon } from './pokemon.models';
-import { pokemonService } from './pokemon.service.js';
+import { pokemonService } from './pokemon.service';
 import { store } from './store';
-import { setLoading } from './pokemon.actions.js';
+import { setLoading } from './pokemon.actions';
 
 @customElement('pokemon-cards')
 export class PokemonCards extends LitElement {
@@ -46,22 +46,21 @@ export class PokemonCards extends LitElement {
   override async connectedCallback(): Promise<void> {
     super.connectedCallback();  
 
-    // Call service = dispatch action in NgRx
-    store.dispatch(setLoading()); 
-    this.loading = store.getState().loading;
-    await pokemonService.loadPokemon();
+    store.subscribe(() => {
+      // Get  state = selector in NgRx
+      this.pokemon = store.getState().pokemon;
+      this.loading = store.getState().loading;
+    });
 
-    // Get new state = selector in NgRx
-    this.pokemon = store.getState().pokemon;
-    this.loading = store.getState().loading;
+    // dispatch action
+    store.dispatch(setLoading()); 
+    // Call service = dispatch action in NgRx
+    await pokemonService.loadPokemon();   
   }
 
   async onDeletePokemon(pokemon: Pokemon): Promise<void> {
     // Call service = dispatch action in NgRx
-    await pokemonService.deletePokemon(pokemon);
-
-    // Get new state = selector in NgRx
-    this.pokemon = store.getState().pokemon;
+    await pokemonService.deletePokemon(pokemon);    
   }
 
   static styles = css`
