@@ -26,7 +26,6 @@ function pokemonReducer(state = initialState, action: { type: string; payload: a
             pokemon: action.payload
         };
     } else if (action.type === 'pokemon/deletePokemon') {
-        console.log((state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== action.payload.name));
         return {
             ...state,
             pokemon: (state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== action.payload.name)
