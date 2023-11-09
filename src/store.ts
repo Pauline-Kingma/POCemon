@@ -1,20 +1,11 @@
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { Pokemon } from './pokemon.models';
-import { createSlice, configureStore, createAsyncThunk } from '@reduxjs/toolkit';
-
-export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async () => {
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
-  return pokemonMock;
-});
-
-export const deletePokemon = createAsyncThunk('pokemon/deletePokemon', async () => {
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
-  return respone;
-});
+import { deletePokemon, loadPokemon } from './pokemon.service';
 
 const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState: {
-    pokemon: [],
+    pokemon: [] as Pokemon[],
     loading: false
   },
   reducers: {},
@@ -26,8 +17,8 @@ const pokemonSlice = createSlice({
     builder.addCase(loadPokemon.pending, (state) => {
       state.loading = true;
     }),
-    builder.addCase(deletePokemon.fulfilled, (state, action) => {
-      state.pokemon = (state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== action.meta.arg.name)
+    builder.addCase(deletePokemon.fulfilled, (state, action) => {    
+      state.pokemon = (state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== (action.meta.arg as unknown as Pokemon).name)
     })
   }
 });
