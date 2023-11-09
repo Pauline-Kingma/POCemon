@@ -46,17 +46,14 @@ export class PokemonCards extends LitElement {
     super.connectedCallback();  
 
     store.subscribe(() => {
-      // Get  state = selector in NgRx
       this.pokemon = store.getState().pokemon;
       this.loading = store.getState().loading;
     });
 
-    // Dispatch action
     store.dispatch(loadPokemon());   
   }
 
   async onDeletePokemon(pokemon: Pokemon): Promise<void> {
-   // Dispatch action
     store.dispatch(deletePokemon(pokemon));  
   }
 
