@@ -1,10 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { pokemonMock } from './pokemon.mock';
+// import { pokemonMock } from './pokemon.mock';
 import { Pokemon } from './pokemon.models';
 
-export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async () => {
+export const loadPokemon = createAsyncThunk<Pokemon[], void, { state: any }>('pokemon/loadPokemon', async () => {
   // await (delay(3000));
-  return pokemonMock;
+  // return pokemonMock;
+  return new Promise((_resolve, reject) => {
+    reject('OH NO');
+  });
 });
 
 export const deletePokemon = createAsyncThunk('pokemon/deletePokemon', async (pokemon: Pokemon) => {

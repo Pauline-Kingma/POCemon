@@ -7,12 +7,13 @@ import { store } from './store';
 @customElement('pokemon-cards')
 export class PokemonCards extends LitElement {
   @state() pokemon: Pokemon[] = [];
-
   @state() loading = false;
+  @state() error = false;
 
   render() {
     return html`
-    ${this.loading ? html`<div class="spinner"></div>` : nothing}
+    ${this.loading ? html`<div class="spinner"></div>` : nothing }
+    ${this.error ? html`<div class="error">Critical hit</div>` : nothing }
     <div class=cards>${this.pokemon.map(pok =>
       html`
       <div class="card">
@@ -43,18 +44,19 @@ export class PokemonCards extends LitElement {
   }
 
   override async connectedCallback(): Promise<void> {
-    super.connectedCallback();  
+    super.connectedCallback();
 
     store.subscribe(() => {
       this.pokemon = store.getState().pokemon;
       this.loading = store.getState().loading;
+      this.error = store.getState().error;
     });
 
-    store.dispatch(loadPokemon());   
+    store.dispatch(loadPokemon());
   }
 
   async onDeletePokemon(pokemon: Pokemon): Promise<void> {
-    store.dispatch(deletePokemon(pokemon));  
+    store.dispatch(deletePokemon(pokemon));
   }
 
   static styles = css`
@@ -124,6 +126,11 @@ export class PokemonCards extends LitElement {
       width: 40px;
       height: 40px;
       animation: spin 1s linear infinite;
+    }
+
+    .error {
+      color: red;
+      font-size: 9rem;
     }
 
     @keyframes spin {
