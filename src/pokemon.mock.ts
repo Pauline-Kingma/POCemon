@@ -3,6 +3,7 @@ import { Pokemon } from './pokemon.models';
 export const pokemonMock: Pokemon[] =
   [
     {
+      id: 25,
       name: "Pikachu",
       type: "Electric",
       size: {
@@ -30,6 +31,7 @@ export const pokemonMock: Pokemon[] =
       description: "Pikachu is an Electric-type Pokémon known for its speed and agility."
     },
     {
+      id: 6,
       name: "Charizard",
       type: "Fire/Flying",
       size: {
@@ -61,6 +63,7 @@ export const pokemonMock: Pokemon[] =
       description: "Charizard is a Fire/Flying-type Pokémon known for its powerful fiery attacks."
     },
     {
+      id: 1,
       name: "Bulbasaur",
       type: ["Grass", "Poison"],
       size: {
@@ -92,6 +95,7 @@ export const pokemonMock: Pokemon[] =
       description: "Bulbasaur is a dual-type Grass/Poison Pokémon known for the plant bulb on its back."
     },
     {
+      id: 7,
       name: "Squirtle",
       type: "Water",
       size: {
@@ -123,6 +127,7 @@ export const pokemonMock: Pokemon[] =
       description: "Squirtle is a Water-type Pokémon known for its water-based attacks."
     },
     {
+      id: 39,
       name: "Jigglypuff",
       type: ["Normal", "Fairy"],
       size: {
@@ -150,6 +155,7 @@ export const pokemonMock: Pokemon[] =
       description: "Jigglypuff is a Normal/Fairy-type Pokémon known for its soothing lullabies."
     },
     {
+      id: 66,
       name: "Machop",
       type: "Fighting",
       size: {
@@ -181,6 +187,7 @@ export const pokemonMock: Pokemon[] =
       description: "Machop is a Fighting-type Pokémon known for its incredible strength."
     },
     {
+      id: 74,
       name: "Geodude",
       type: ["Rock", "Ground"],
       size: {
@@ -212,6 +219,7 @@ export const pokemonMock: Pokemon[] =
       description: "Geodude is a Rock/Ground-type Pokémon known for its rocky body."
     },
     {
+      id: 16,
       name: "Pidgey",
       type: ["Normal", "Flying"],
       size: {
@@ -243,6 +251,7 @@ export const pokemonMock: Pokemon[] =
       description: "Pidgey is a Normal/Flying-type Pokémon known for its keen eyesight."
     },
     {
+      id: 92,
       name: "Gastly",
       type: ["Ghost", "Poison"],
       size: {
@@ -273,6 +282,7 @@ export const pokemonMock: Pokemon[] =
       description: "Gastly is a Ghost/Poison-type Pokémon known for its ability to phase through walls."
     },
     {
+      id: 95,
       name: "Onix",
       type: ["Rock", "Ground"],
       size: {
@@ -300,6 +310,7 @@ export const pokemonMock: Pokemon[] =
       description: "Onix is a Rock/Ground-type Pokémon known for its massive size and strength."
     },
     {
+      id: 96,
       name: "Drowzee",
       type: "Psychic",
       size: {
@@ -327,6 +338,7 @@ export const pokemonMock: Pokemon[] =
       description: "Drowzee is a Psychic-type Pokémon known for its sleep-inducing abilities."
     },
     {
+      id: 98,
       name: "Krabby",
       type: "Water",
       size: {
@@ -352,5 +364,5 @@ export const pokemonMock: Pokemon[] =
         }
       ],
       description: "Krabby is a Water-type Pokémon known for its powerful pincers."
-    }
+    }   
   ];

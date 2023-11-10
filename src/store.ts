@@ -23,7 +23,7 @@ const pokemonSlice = createSlice({
       state.error = true;
     }),
     builder.addCase(deletePokemon.fulfilled, (state, action) => {    
-      state.pokemon = (state.pokemon as Pokemon[]).filter(pokemon => pokemon.name !== (action.meta.arg as unknown as Pokemon).name)
+      state.pokemon = (state.pokemon as Pokemon[]).filter(pokemon => pokemon.id !== (action.meta.arg as unknown as Pokemon).id)
     })
   }
 });

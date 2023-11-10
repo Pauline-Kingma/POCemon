@@ -21,6 +21,7 @@ export class PokemonCards extends LitElement {
           <div class="name">${pok.name}</div>
           <button @click=${() => this.onDeletePokemon(pok)}>X</button>
         </div>
+        <img .src=${`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pok.id}.png`}>
         <div class="type">Type: ${pok.type}</div>
         <div class="size">Lengte: ${pok.size.height}</div>
         <div class="weight">Gewicht: ${pok.size.weight}</div>
@@ -62,6 +63,11 @@ export class PokemonCards extends LitElement {
   static styles = css`
     :host {     
       text-align: center;
+    }
+
+    img {
+      height: 4rem;
+      width: 4rem;
     }
 
     .cards {
