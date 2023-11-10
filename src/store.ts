@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { deletePokemon, loadPokemon } from './pokemon.actions';
 import { Pokemon } from './pokemon.models';
-import { deletePokemon, loadPokemon } from './pokemon.service';
 
 const pokemonSlice = createSlice({
   name: 'pokemon',

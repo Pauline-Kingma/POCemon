@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { Pokemon } from './pokemon.models';
-import { store } from './store';
+import { Pokemon } from '../pokemon.models';
+import { store } from '../store';
 
 @customElement('pokemon-count')
 export class PokemonCount extends LitElement {
