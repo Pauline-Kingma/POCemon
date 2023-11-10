@@ -13,9 +13,7 @@ class PokemonService {
   }
 
   async deletePokemon(pokemon: Pokemon) {
-    console.log(pokemon.name);
-    // const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
-    // console.log(response);
+    console.log(pokemon.name);   
     return {};
   }
 }
