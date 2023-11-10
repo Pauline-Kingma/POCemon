@@ -23,8 +23,8 @@ export class PokemonCards extends LitElement {
         </div>
         <img .src=${`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pok.id}.png`}>
         <div class="type">Type: ${pok.type}</div>
-        <div class="size">Lengte: ${pok.size.height}</div>
-        <div class="weight">Gewicht: ${pok.size.weight}</div>
+        <div class="size">Length: ${pok.size.height}</div>
+        <div class="weight">Weight: ${pok.size.weight}</div>
         <div class="abilities">Abilities: ${pok.abilities.join(', ')}</div>
         <div class="label">Stats</div>
         <div class="stats">
